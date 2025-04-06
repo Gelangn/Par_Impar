@@ -75,6 +75,8 @@ t_global			*handle_file_option(int argc, char *argv[]);
 
 // Inits
 void				initialize_global(t_global *global);
+void				init_mutex(t_global *global);
+void				init_threads(t_global *global);
 
 // Threads
 int					thread_create(t_global *global);
@@ -85,6 +87,9 @@ void				destroy_mutex(t_global *global);
 
 // Utils
 void				finish(t_global *global, const char *message);
+bool				process_random_number(t_thread_data *thread_data, int new_num,
+		int count);
+void				*gen_unique_rand_nums(void *arg);
 
 // Frees
 void				free_resources(t_global *global);

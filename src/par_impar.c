@@ -144,64 +144,9 @@ void	*gen_unique_rand_nums(void *arg)
 	pthread_exit(NULL);
 }
 
-void	init_mutex(t_global *global)
-{
-	if (pthread_mutex_init(&global->mutex_even, NULL) != 0)
-		finish(global, ERR_INIT);
-	if (pthread_mutex_init(&global->mutex_odd, NULL) != 0)
-		finish(global, ERR_INIT);
-	if (pthread_mutex_init(&global->mutex_count, NULL) != 0)
-		finish(global, ERR_INIT);
-}
 
-void	init_threads(t_global *global)
-{
-	int	i;
 
-	// Asigna memoria para los identificadores de hilos
-	global->threads = malloc(sizeof(pthread_t) * global->num_threads);
-	if (!global->threads)
-		finish(global, ERR_ALLOCATE);
-	// Asigna memoria para los datos específicos de cada hilo
-	global->thread_data = malloc(sizeof(t_thread_data) * global->num_threads);
-	if (!global->thread_data)
-		finish(global, ERR_ALLOCATE);
-	i = -1;
-	while (++i < global->num_threads)
-	{
-		global->thread_data[i].thread_id = i + 1;
-		global->thread_data[i].global = global;
-	}
-}
 
-int	thread_create(t_global *global)
-{
-	int	i;
-
-	i = -1;
-	while (++i < global->num_threads)
-	{
-		printf("Creating thread %d\n", global->thread_data[i].thread_id);
-		if (pthread_create(&global->threads[i], NULL, gen_unique_rand_nums,
-				(void *)&global->thread_data[i]) != 0)
-			finish(global, ERR_THREAD);
-	}
-	thread_join(global);
-	return (EXIT_SUCCESS);
-}
-
-void	thread_join(t_global *global)
-{
-	int	i;
-
-	i = -1;
-	while (++i < global->num_threads)
-	{
-		if (pthread_join(global->threads[i], NULL) != 0)
-			finish(global, ERR_THREAD);
-		printf("Thread %d joined\n", i + 1);
-	}
-}
 
 void	help(void)
 {
