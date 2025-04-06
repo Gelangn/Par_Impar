@@ -77,6 +77,8 @@ t_global			*handle_file_option(int argc, char *argv[]);
 void				initialize_global(t_global *global);
 
 // Threads
+int					thread_create(t_global *global);
+void				thread_join(t_global *global);
 
 // Mutexs
 void				destroy_mutex(t_global *global);
