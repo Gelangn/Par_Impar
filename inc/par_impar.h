@@ -87,5 +87,6 @@ void				finish(t_global *global, const char *message);
 // Frees
 void				free_resources(t_global *global);
 void				free_list(t_list *list);
+void				destroy_mutex(t_global *global);
 
 #endif // PAR_IMPAR_H
