@@ -60,10 +60,10 @@ void	add_to_odd_list(t_global *global, int num)
 	}
 }
 
-void	print_lists(t_global *global)
+void print_lists(t_global* global)
 {
-	t_list *current_even;
-	t_list *current_odd;
+	t_list* current_even;
+	t_list* current_odd;
 
 	printf("Even numbers:\n");
 	current_even = global->list_even;
