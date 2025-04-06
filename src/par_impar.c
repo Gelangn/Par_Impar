@@ -62,7 +62,7 @@ void	add_to_odd_list(t_global *global, int num)
 
 /* Procesa un número aleatorio,
 	verifica duplicados y lo añade a la lista correspondiente */
-bool	process_random_number(t_thread_data *thread_data, int new_num,
+bool	p_rand_num(t_thread_data *thread_data, int new_num,
 		int count)
 {
 	t_global	*global;
@@ -135,7 +135,7 @@ void	*gen_unique_rand_nums(void *arg)
 		new_long = new_long % range + INT_MIN;
 		new_num = (int)new_long;
 
-		if (process_random_number(thread_data, new_num, count))
+		if (p_rand_num(thread_data, new_num, count))
 		{
 			count++;
 		}

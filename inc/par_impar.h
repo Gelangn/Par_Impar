@@ -87,8 +87,7 @@ void				destroy_mutex(t_global *global);
 
 // Utils
 void				finish(t_global *global, const char *message);
-bool				process_random_number(t_thread_data *thread_data, int new_num,
-		int count);
+bool				p_rand_num(t_thread_data *thread_data, int new_num, int count);
 void				*gen_unique_rand_nums(void *arg);
 
 // Frees
