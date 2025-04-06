@@ -4,7 +4,6 @@
 
 #include "../inc/par_impar.h"
 
-
 /* Procesa un número aleatorio,
 	verifica duplicados y lo añade a la lista correspondiente */
 bool	p_rand_num(t_thread_data *thread_data, int new_num,
@@ -150,6 +149,7 @@ int	main(int argc, char *argv[])
 		init_mutex(global);
 		init_threads(global);
 		thread_create(global);
+		print_lists(global);
 		destroy_mutex(global);
 		free_resources(global);
 		exit(EXIT_SUCCESS);

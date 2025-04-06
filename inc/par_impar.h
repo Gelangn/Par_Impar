@@ -94,6 +94,7 @@ void				*gen_unique_rand_nums(void *arg);
 t_list	*create_node(int val);
 void	add_to_even_list(t_global *global, int num);
 void	add_to_odd_list(t_global *global, int num);
+void	print_lists(t_global *global);
 
 // Frees
 void				free_resources(t_global *global);

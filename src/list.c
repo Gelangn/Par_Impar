@@ -59,3 +59,27 @@ void	add_to_odd_list(t_global *global, int num)
 		current->next = new_node;
 	}
 }
+
+void	print_lists(t_global *global)
+{
+	t_list *current_even;
+	t_list *current_odd;
+
+	printf("Even numbers:\n");
+	current_even = global->list_even;
+	while (current_even != NULL)
+	{
+		printf("%d ", current_even->value);
+		current_even = current_even->next;
+	}
+	printf("\n");
+
+	printf("Odd numbers:\n");
+	current_odd = global->list_odd;
+	while (current_odd != NULL)
+	{
+		printf("%d ", current_odd->value);
+		current_odd = current_odd->next;
+	}
+	printf("\n");
+}
