@@ -70,8 +70,10 @@ void	*gen_unique_rand_nums(void *arg)
 		num_per_thread);
 	seed = (unsigned)time(NULL) ^ ((unsigned)thread_data->thread_id << 16);
 	srand(seed);
-	while (count < num_per_thread)
+	while (count < num_per_thread && !g_term)
 	{
+		if (g_term)
+			break ;
 		range = (long long)INT_MAX - (long long)INT_MIN + 1;
 		new_long = (long long)rand() * RAND_MAX + rand();
 		new_long = new_long % range + INT_MIN;
@@ -82,5 +84,5 @@ void	*gen_unique_rand_nums(void *arg)
 		}
 	}
 	printf("Thread %d finished generating numbers\n\n", thread_id);
-	pthread_exit(NULL);
+	return (NULL);
 }

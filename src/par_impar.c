@@ -2,7 +2,34 @@
 // Created by angel on 6/04/25.
 //
 
+#define _POSIX_C_SOURCE 200809L
 #include "../inc/par_impar.h"
+
+volatile sig_atomic_t	g_term = 0;
+
+// Variable global para el manejador de señales
+static t_global			*g_global = NULL;
+
+// Función manejadora de la señal SIGINT (Ctrl+C)
+void	signal_handler(int signum)
+{
+	if (signum == SIGINT)
+	{
+		printf("\nPrograma recibió señal de interrupción (Ctrl+C)\n");
+		g_term = 1;
+	}
+}
+
+// Función para configurar el manejador de señal
+void	setup_signal_handler(t_global *global)
+{
+	struct sigaction	sa;
+
+	g_global = global;
+	memset(&sa, 0, sizeof(sa));
+	sa.sa_handler = signal_handler;
+	sigaction(SIGINT, &sa, NULL);
+}
 
 void	help(void)
 {
@@ -62,13 +89,15 @@ int	main(int argc, char *argv[])
 		if (!global)
 			finish(global, ERR_ALLOCATE);
 		printf("File is valid ...\n");
+		setup_signal_handler(global);
 		init_mutex(global);
 		init_threads(global);
 		thread_create(global);
+
 		print_lists(global);
 		destroy_mutex(global);
 		free_resources(global);
-		exit(EXIT_SUCCESS);
+		return (EXIT_SUCCESS);
 	}
 	return (0);
 }

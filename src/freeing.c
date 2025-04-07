@@ -53,6 +53,8 @@ void	free_list(t_list *list)
 
 void	destroy_mutex(t_global *global)
 {
+	if (!global)
+		return ;
 	pthread_mutex_destroy(&global->mutex_even);
 	pthread_mutex_destroy(&global->mutex_odd);
 	pthread_mutex_destroy(&global->mutex_count);
@@ -60,17 +62,24 @@ void	destroy_mutex(t_global *global)
 
 void	finish(t_global *global, const char *message)
 {
-	if (errno == 0)
+	int	i;
+
+	if (!global)
 	{
 		printf("Exiting program: %s\n", message);
-		free_resources(global);
-		exit(EXIT_SUCCESS);
-	}
-	else
-	{
-		perror(message);
-		printf("Exiting program\n");
-		free_resources(global);
 		exit(EXIT_FAILURE);
 	}
+	printf("Terminando programa: %s\n", message);
+	if (global->threads)
+	{
+		i = -1;
+		while (++i < global->num_threads)
+		{
+			pthread_cancel(global->threads[i]);
+			pthread_detach(global->threads[i]);
+		}
+	}
+	destroy_mutex(global);
+	free_resources(global);
+	_exit(EXIT_SUCCESS);
 }

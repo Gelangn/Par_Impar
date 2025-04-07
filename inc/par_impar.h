@@ -5,6 +5,8 @@
 #ifndef PAR_IMPAR_H
 # define PAR_IMPAR_H
 
+# define _POSIX_C_SOURCE 200809L
+
 # include <errno.h>
 # include <fcntl.h>
 # include <limits.h>
@@ -17,6 +19,7 @@
 # include <sys/wait.h>
 # include <time.h>
 # include <unistd.h>
+# include <signal.h>
 
 # define ERR_INVALID_EXTENSION "Invalid argument, expected .txt extension\n"
 # define ERR_ARG "Usage: ./ParImpar [-h|--help] or ./ParImpar [-f|--file] <file.txt>\n"
@@ -28,6 +31,10 @@
 # define ERR_INIT "Error initializing resources\n"
 # define ERR_ALLOCATE "Failed to allocate memory for thread handles\n"
 # define ERR_THREAD "Failed to create/modify threads\n"
+# define ERR_SIGNAL "Program interrupted by user\n"
+# define ERR_INTERRUPTED 10 
+
+extern volatile sig_atomic_t g_term;
 
 /* Structs */
 
