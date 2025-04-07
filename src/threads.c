@@ -22,7 +22,7 @@ int	thread_create(t_global *global)
 
 void	thread_join(t_global *global)
 {
-	int	i;
+	int i;
 
 	i = -1;
 	while (++i < global->num_threads)

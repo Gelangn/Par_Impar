@@ -28,7 +28,7 @@ void	init_mutex(t_global *global)
 
 void	init_threads(t_global *global)
 {
-	int	i;
+	int i;
 
 	// Asigna memoria para los identificadores de hilos
 	global->threads = malloc(sizeof(pthread_t) * global->num_threads);

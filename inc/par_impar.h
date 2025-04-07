@@ -87,14 +87,15 @@ void				destroy_mutex(t_global *global);
 
 // Utils
 void				finish(t_global *global, const char *message);
-bool				p_rand_num(t_thread_data *thread_data, int new_num, int count);
+bool				p_rand_num(t_thread_data *thread_data, int new_num,
+						int count);
 void				*gen_unique_rand_nums(void *arg);
 
 // Lists
-t_list	*create_node(int val);
-void	add_to_even_list(t_global *global, int num);
-void	add_to_odd_list(t_global *global, int num);
-void print_lists(t_global* global);
+t_list				*create_node(int val);
+void				add_to_even_list(t_global *global, int num);
+void				add_to_odd_list(t_global *global, int num);
+void				print_lists(t_global *global);
 
 // Frees
 void				free_resources(t_global *global);
