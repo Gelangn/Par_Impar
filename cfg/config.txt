@@ -1,2 +1,2 @@
 number_per_thread = 10
-thread_num = 4
+thread_num = 40
