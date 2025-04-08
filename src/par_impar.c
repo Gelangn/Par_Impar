@@ -15,7 +15,7 @@ void	signal_handler(int signum)
 {
 	if (signum == SIGINT)
 	{
-		printf("\nPrograma recibió señal de interrupción (Ctrl+C)\n");
+		printf("\nProgram received interrupt signal (Ctrl+C)\n");
 		g_term = 1;
 	}
 }

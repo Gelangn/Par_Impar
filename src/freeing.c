@@ -66,10 +66,10 @@ void	finish(t_global *global, const char *message)
 
 	if (!global)
 	{
-		printf("Exiting program: %s\n", message);
+		printf("\nExiting program: %s\n", message);
 		exit(EXIT_FAILURE);
 	}
-	printf("Terminando programa: %s\n", message);
+	printf("\nExiting program: %s\n", message);
 	if (global->threads)
 	{
 		i = -1;
